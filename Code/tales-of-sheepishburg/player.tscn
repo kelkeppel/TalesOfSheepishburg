@@ -1,5 +1,19 @@
-[gd_scene format=3 uid="uid://73owhcpm6hqp"]
+[gd_scene load_steps=4 format=3 uid="uid://73owhcpm6hqp"]
+
+[ext_resource type="PackedScene" uid="uid://86ue8qgmytli" path="res://Models/blockbenchSheep.glb" id="1_2pgc1"]
+[ext_resource type="Script" path="res://player.gd" id="1_7xstc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fi21y"]
+size = Vector3(0.840576, 2.15009, 0.663635)
 
 [node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_7xstc")
 
 [node name="Pivot" type="Node3D" parent="."]
+
+[node name="blockbenchSheep" parent="Pivot" instance=ExtResource("1_2pgc1")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/blockbenchSheep"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00012207, 1.10624, -0.0885315)
+shape = SubResource("BoxShape3D_fi21y")
