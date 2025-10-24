@@ -1,31 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6relfn24xmg2"]
+[gd_scene load_steps=5 format=3 uid="uid://c6relfn24xmg2"]
 
+[ext_resource type="MeshLibrary" uid="uid://dbqhnfjcgomgx" path="res://Models/library.tres" id="1_18hv0"]
 [ext_resource type="PackedScene" uid="uid://73owhcpm6hqp" path="res://player.tscn" id="1_aypqv"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2yu6o"]
+[sub_resource type="Environment" id="Environment_vpyk8"]
+background_mode = 1
+background_color = Color(0.317347, 0.750208, 0.940112, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_7co5o"]
-size = Vector3(60, 1, 60)
+[sub_resource type="BoxShape3D" id="BoxShape3D_o0eyw"]
+size = Vector3(16, 1, 16)
 
 [node name="Main" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(60, 0, 0, 0, 1, 0, 0, 0, 60, 0, 0, 0)
-shape = SubResource("BoxShape3D_2yu6o")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_7co5o")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.654715, 0.755876, 0, -0.755876, 0.654715, 0, 16.2339, 20.3641)
+transform = Transform3D(1, 0, 0, 0, 0.654715, 0.755876, 0, -0.755876, 0.654715, 0, 15.2339, 20.3641)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_aypqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3, 0)
 
 [node name="CameraPivot" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.52207, 6.55983)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vpyk8")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_18hv0")
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65535, 65535, 1, 1, 65535, 0, 65533, 65535, 0, 65533, 65533, 0, 1, 65533, 0, 1, 1, 0, 65533, 1, 0, 1, 65531, 0, 65533, 65531, 0, 3, 65531, 0, 3, 65533, 0, 3, 65535, 0, 3, 1, 0, 65535, 65533, 1, 65535, 65531, 1, 65535, 1, 1)
+}
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 1.5, 0, -2.5)
+shape = SubResource("BoxShape3D_o0eyw")

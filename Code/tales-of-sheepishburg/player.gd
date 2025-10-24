@@ -24,12 +24,14 @@ func _physics_process(delta):
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 	
-	#make the character rotate depending on which direction the player is going
-	$Pivot.basis = Basis.looking_at(direction)
+	#set the rotation of the pivot node to the direction the character was last facing that wasn't 0
+	if direction.z != 0 or direction.x != 0:
+		$Pivot.basis = Basis.looking_at(direction)
 	
 	#calculate the speed the character goes
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
+	
 	
 	velocity = target_velocity
 	#this is a built in function that helps smooth out movement
