@@ -14,10 +14,13 @@ size = Vector3(16, 1, 16)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.654715, 0.755876, 0, -0.755876, 0.654715, 0, 15.2339, 20.3641)
+light_energy = 0.272
+light_indirect_energy = 1.362
 shadow_enabled = true
+shadow_opacity = 0.85
 
 [node name="Player" parent="." instance=ExtResource("1_aypqv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
 [node name="CameraPivot" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.52207, 6.55983)
