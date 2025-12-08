@@ -31,7 +31,9 @@ func _physics_process(delta):
 	#calculate the speed the character goes
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
-	
+	# Vertical Velocity
+	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
+		target_velocity.y = target_velocity.y - (5 * delta)
 	
 	velocity = target_velocity
 	#this is a built in function that helps smooth out movement

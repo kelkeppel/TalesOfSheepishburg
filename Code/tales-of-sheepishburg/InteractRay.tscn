@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmf8llqu4y71l"]
+
+[ext_resource type="Script" path="res://interact.gd" id="1_a4ffv"]
+
+[node name="InteractRay" type="RayCast3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 10.3848, 0, 0, 0)
+target_position = Vector3(0, 0, 3)
+script = ExtResource("1_a4ffv")
+
+[node name="Prompt" type="Label" parent="."]
+offset_left = -1.0
+offset_top = 134.0
+offset_right = 1157.0
+offset_bottom = 254.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 11
+theme_override_font_sizes/font_size = 32
+text = "Press Space"
+horizontal_alignment = 1

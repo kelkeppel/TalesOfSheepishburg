@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6relfn24xmg2"]
+[gd_scene load_steps=7 format=3 uid="uid://c6relfn24xmg2"]
 
 [ext_resource type="MeshLibrary" uid="uid://dbqhnfjcgomgx" path="res://Models/library.tres" id="1_18hv0"]
 [ext_resource type="PackedScene" uid="uid://73owhcpm6hqp" path="res://player.tscn" id="1_aypqv"]
+[ext_resource type="Script" path="res://CameraPositionTarget.gd" id="2_deppq"]
+[ext_resource type="PackedScene" uid="uid://c2rjy6ujr85u7" path="res://NPC.tscn" id="3_unwju"]
 
 [sub_resource type="Environment" id="Environment_vpyk8"]
 background_mode = 1
@@ -12,15 +14,27 @@ size = Vector3(16, 1, 16)
 
 [node name="Main" type="Node3D"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.654715, 0.755876, 0, -0.755876, 0.654715, 0, 15.2339, 20.3641)
-light_energy = 0.272
-light_indirect_energy = 1.362
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.479166, 0.877724, 0, -0.877724, -0.479166, 0, 15.2339, -9.96861)
+light_color = Color(0.530269, 0.345883, 0.262684, 1)
 shadow_enabled = true
-shadow_opacity = 0.85
+shadow_opacity = 0.1
+sky_mode = 1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.349668, 0.936874, 0, -0.936873, 0.349668, 0, 15.2339, 2.95322)
+light_color = Color(0.834388, 0.693321, 0.534227, 1)
+light_energy = 0.062
+light_angular_distance = 15.43
+shadow_enabled = true
+shadow_opacity = 0.1
 
 [node name="Player" parent="." instance=ExtResource("1_aypqv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.507819, 0.585658)
+
+[node name="CameraPosition" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.516788, 4.50045, 1.35507)
+script = ExtResource("2_deppq")
 
 [node name="CameraPivot" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.52207, 6.55983)
@@ -38,8 +52,11 @@ data = {
 }
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.109826, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 1.5, 0, -2.5)
+transform = Transform3D(1, 0, 0, 0, 0.19, 0, 0, 0, 1, 2.5, -0.1, -2.5)
 shape = SubResource("BoxShape3D_o0eyw")
+
+[node name="NPC" parent="." instance=ExtResource("3_unwju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.131524, -2.3521)
