@@ -60,3 +60,4 @@ shape = SubResource("BoxShape3D_o0eyw")
 
 [node name="NPC" parent="." instance=ExtResource("3_unwju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.131524, -2.3521)
+prompt_message = "Rabbit"
