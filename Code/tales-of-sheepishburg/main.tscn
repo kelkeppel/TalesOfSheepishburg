@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6relfn24xmg2"]
+[gd_scene load_steps=8 format=3 uid="uid://c6relfn24xmg2"]
 
 [ext_resource type="MeshLibrary" uid="uid://dbqhnfjcgomgx" path="res://Models/library.tres" id="1_18hv0"]
 [ext_resource type="PackedScene" uid="uid://73owhcpm6hqp" path="res://player.tscn" id="1_aypqv"]
 [ext_resource type="Script" path="res://CameraPositionTarget.gd" id="2_deppq"]
 [ext_resource type="PackedScene" uid="uid://c2rjy6ujr85u7" path="res://NPC.tscn" id="3_unwju"]
+[ext_resource type="Resource" uid="uid://co15tmbautorj" path="res://Dialogue/test.dialogue" id="5_rqs4m"]
 
 [sub_resource type="Environment" id="Environment_vpyk8"]
 background_mode = 1
@@ -30,7 +31,7 @@ shadow_enabled = true
 shadow_opacity = 0.1
 
 [node name="Player" parent="." instance=ExtResource("1_aypqv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.507819, 0.585658)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.174663, 0.585658)
 
 [node name="CameraPosition" type="Node3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.516788, 4.50045, 1.35507)
@@ -60,4 +61,5 @@ shape = SubResource("BoxShape3D_o0eyw")
 
 [node name="NPC" parent="." instance=ExtResource("3_unwju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.131524, -2.3521)
+dialogue_resource = ExtResource("5_rqs4m")
 prompt_message = "Rabbit"
