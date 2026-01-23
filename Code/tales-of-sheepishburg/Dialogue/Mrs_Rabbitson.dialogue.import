@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://b7pk3dvdxm6eh"
+path="res://.godot/imported/Mrs_Rabbitson.dialogue-c54c958952c6439ea4fab114c7bb9fe9.tres"
+
+[deps]
+
+source_file="res://Dialogue/Mrs_Rabbitson.dialogue"
+dest_files=["res://.godot/imported/Mrs_Rabbitson.dialogue-c54c958952c6439ea4fab114c7bb9fe9.tres"]
+
+[params]
+
+defaults=true
