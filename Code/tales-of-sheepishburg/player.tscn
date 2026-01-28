@@ -17,7 +17,7 @@ script = ExtResource("1_7xstc")
 transform = Transform3D(-3.27835e-08, 0, 0.75, 0, 0.75, 0, -0.75, 0, -3.27835e-08, -0.00363302, 3.0071, 0.00163841)
 
 [node name="RayCast3D" parent="Pivot" instance=ExtResource("3_kuxwd")]
-transform = Transform3D(-0.999996, -1.28168e-10, 0.00186251, -1.28168e-10, 1, 1.10072e-13, -0.00272273, -1.87742e-13, -0.684055, 0, 1.40573, 0)
+transform = Transform3D(-1.00302, -1.28168e-10, 0.00175286, -1.28556e-10, 1, 1.03592e-13, -0.00273097, -1.87742e-13, -0.643782, 0, 1.40573, -0.296362)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.000122062, 1.69847, -0.012895)

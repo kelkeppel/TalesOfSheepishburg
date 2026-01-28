@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6relfn24xmg2"]
+[gd_scene load_steps=11 format=3 uid="uid://c6relfn24xmg2"]
 
 [ext_resource type="MeshLibrary" uid="uid://dbqhnfjcgomgx" path="res://Models/library.tres" id="1_18hv0"]
 [ext_resource type="PackedScene" uid="uid://73owhcpm6hqp" path="res://player.tscn" id="1_aypqv"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://c2rjy6ujr85u7" path="res://NPC.tscn" id="3_unwju"]
 [ext_resource type="Resource" uid="uid://co15tmbautorj" path="res://Dialogue/test.dialogue" id="5_rqs4m"]
 [ext_resource type="PackedScene" uid="uid://b50sv3vyqflik" path="res://Models/House.gltf" id="6_yb6dn"]
+[ext_resource type="Resource" uid="uid://b7pk3dvdxm6eh" path="res://Dialogue/Mrs_Rabbitson.dialogue" id="7_lt4qi"]
+[ext_resource type="PackedScene" uid="uid://criasrjq6vtbq" path="res://Models/rabbitBaseModel.glb" id="8_ckj14"]
 
 [sub_resource type="Environment" id="Environment_vpyk8"]
 background_mode = 1
@@ -60,10 +62,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.109826, 1)
 transform = Transform3D(1, 0, 0, 0, 0.19, 0, 0, 0, 1, 2.5, -0.1, -2.5)
 shape = SubResource("BoxShape3D_o0eyw")
 
-[node name="NPC" parent="." instance=ExtResource("3_unwju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.131524, -2.3521)
+[node name="Mrs_ Rabbitson" parent="." instance=ExtResource("3_unwju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88896, 0.131524, -6.65064)
 dialogue_resource = ExtResource("5_rqs4m")
+dialogue_start = "this_is_a_node_title"
 prompt_message = "Rabbit"
 
 [node name="blockbench_export" parent="." instance=ExtResource("6_yb6dn")]
 transform = Transform3D(-0.392174, 0, 1.11406, 0, 1.58487, 0, -1.53789, 0, -0.284095, 5.05927, 0.104826, -7.57291)
+
+[node name="NPC" parent="." instance=ExtResource("3_unwju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65865, 0.158712, -4.19565)
+dialogue_resource = ExtResource("7_lt4qi")
+dialogue_start = "Meet_The_Rabbitsons"
+
+[node name="rabbitBaseModel2" parent="NPC" instance=ExtResource("8_ckj14")]
+transform = Transform3D(-0.8, 0, 6.99382e-08, 0, 0.64, 0, -6.99382e-08, 0, -0.8, 0, 2.79824, 0)
