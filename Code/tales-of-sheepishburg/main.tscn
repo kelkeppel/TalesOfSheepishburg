@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6relfn24xmg2"]
+[gd_scene load_steps=10 format=3 uid="uid://c6relfn24xmg2"]
 
-[ext_resource type="MeshLibrary" uid="uid://dbqhnfjcgomgx" path="res://Models/library.tres" id="1_18hv0"]
 [ext_resource type="PackedScene" uid="uid://73owhcpm6hqp" path="res://player.tscn" id="1_aypqv"]
 [ext_resource type="Script" path="res://CameraPositionTarget.gd" id="2_deppq"]
 [ext_resource type="PackedScene" uid="uid://c2rjy6ujr85u7" path="res://NPC.tscn" id="3_unwju"]
+[ext_resource type="MeshLibrary" uid="uid://bpbsxsljel1sy" path="res://mesh_library.tres" id="3_ylbgi"]
 [ext_resource type="Resource" uid="uid://co15tmbautorj" path="res://Dialogue/test.dialogue" id="5_rqs4m"]
 [ext_resource type="PackedScene" uid="uid://b50sv3vyqflik" path="res://Models/House.gltf" id="6_yb6dn"]
 [ext_resource type="Resource" uid="uid://b7pk3dvdxm6eh" path="res://Dialogue/Mrs_Rabbitson.dialogue" id="7_lt4qi"]
@@ -12,9 +12,6 @@
 [sub_resource type="Environment" id="Environment_vpyk8"]
 background_mode = 1
 background_color = Color(0.317347, 0.750208, 0.940112, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_o0eyw"]
-size = Vector3(16, 1, 16)
 
 [node name="Main" type="Node3D"]
 
@@ -34,33 +31,28 @@ shadow_enabled = true
 shadow_opacity = 0.1
 
 [node name="Player" parent="." instance=ExtResource("1_aypqv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.174663, 0.585658)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.910901, 0.11604, 0.585658)
 
 [node name="CameraPosition" type="Node3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.516788, 4.50045, 1.35507)
 script = ExtResource("2_deppq")
 
-[node name="CameraPivot" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.52207, 6.55983)
+[node name="CameraPivot" type="Marker3D" parent="Player/CameraPosition"]
+transform = Transform3D(1, 0, 0, 0, 0.943784, 0.330564, 0, -0.330564, 0.943784, -0.516788, 1.46784, 4.91652)
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+[node name="Camera3D" type="Camera3D" parent="Player/CameraPosition/CameraPivot"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vpyk8")
 
 [node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("1_18hv0")
-cell_center_y = false
+transform = Transform3D(0.999782, 0, 0, 0, 0.999782, 0, 0, 0, 0.999782, 0, -1, 0)
+mesh_library = ExtResource("3_ylbgi")
+cell_scale = 0.5
 data = {
-"cells": PackedInt32Array(65535, 65535, 1, 1, 65535, 0, 65533, 65535, 0, 65533, 65533, 0, 1, 65533, 0, 1, 1, 0, 65533, 1, 0, 1, 65531, 0, 65533, 65531, 0, 3, 65531, 0, 3, 65533, 0, 3, 65535, 0, 3, 1, 0, 65535, 65533, 1, 65535, 65531, 1, 65535, 1, 1)
+"cells": PackedInt32Array(2, 65531, 0, 0, 65531, 0, 2, 65533, 0, 0, 65533, 0, 65534, 65533, 0, 65534, 65531, 0, 2, 65535, 0, 0, 65535, 0, 65534, 65535, 0, 2, 1, 0, 0, 1, 0, 65534, 1, 0, 65532, 65531, 0, 65532, 65533, 0, 65532, 65535, 0, 65532, 1, 0, 65534, 65529, 0, 65532, 65529, 0, 65530, 65529, 0, 65530, 65531, 0, 65530, 65533, 0, 65530, 65535, 0, 65528, 65529, 0, 65528, 65531, 0, 65528, 65533, 0, 65526, 65529, 0, 65526, 65531, 0, 65526, 65533, 0, 65528, 65535, 0, 65529, 65527, 0, 65533, 1, 0, 65534, 0, 0, 65535, 0, 0, 65533, 0, 0, 65533, 65535, 0, 65535, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 65535, 0, 1, 65534, 0, 0, 65534, 0, 65535, 65534, 0, 65534, 65534, 0, 65535, 65535, 0, 65533, 65534, 0, 65532, 65534, 0, 65533, 65533, 0, 65534, 65532, 0, 65535, 65532, 0, 0, 65532, 0, 1, 65533, 0, 65535, 65533, 0, 1, 65532, 0, 1, 65531, 0, 65535, 65531, 0, 65535, 65530, 0, 65534, 65530, 0, 65533, 65531, 0, 65532, 65532, 0, 65533, 65532, 0, 65533, 65530, 0, 65533, 65529, 0, 65532, 65530, 0, 65531, 65530, 0, 65531, 65531, 0, 65531, 65532, 0, 65531, 65533, 0, 65531, 65534, 0, 65531, 65535, 0, 65532, 0, 0, 65531, 0, 0, 65529, 65535, 0, 65529, 65534, 0, 65530, 65534, 0, 65528, 65534, 0, 65527, 65533, 0, 65529, 65533, 0, 65527, 65532, 0, 65527, 65531, 0, 65528, 65530, 0, 65529, 65530, 0, 65530, 65530, 0, 65530, 65532, 0, 65529, 65532, 0, 65528, 65532, 0, 65529, 65531, 0, 65529, 65529, 0, 65529, 65528, 0, 65530, 65527, 0, 65530, 65528, 0, 65531, 65528, 0, 65532, 65528, 0, 65531, 65529, 0, 65528, 65528, 0, 65527, 65527, 0, 65527, 65528, 0, 65526, 65528, 0, 65527, 65529, 0, 65526, 65530, 0, 65527, 65530, 0, 65525, 65530, 0, 65525, 65529, 0, 65525, 65528, 0, 65525, 65527, 0, 65525, 65531, 0, 65525, 65532, 0, 65526, 65532, 0, 65525, 65533, 0, 65526, 65534, 0, 65527, 65534, 0, 65527, 65535, 0, 65525, 65534, 0, 65526, 65535, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 1, 0, 65530, 1, 0, 65529, 1, 0, 65528, 65527, 0, 65526, 65527, 0, 65526, 65526, 0, 65527, 65525, 0, 65527, 65526, 0, 65528, 65526, 0, 65529, 65526, 0, 65531, 65527, 0, 65533, 65528, 0, 3, 2, 0, 2, 2, 0, 1, 2, 0, 0, 2, 0, 65535, 2, 0, 65534, 2, 0, 65533, 2, 0, 65532, 2, 0, 65530, 2, 0, 65529, 2, 0, 65531, 2, 0, 65531, 3, 0, 65530, 3, 0, 65529, 3, 0, 65530, 4, 0, 65531, 4, 0)
 }
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.109826, 1)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.19, 0, 0, 0, 1, 2.5, -0.1, -2.5)
-shape = SubResource("BoxShape3D_o0eyw")
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Mrs_ Rabbitson" parent="." instance=ExtResource("3_unwju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88896, 0.131524, -6.65064)
@@ -68,7 +60,7 @@ dialogue_resource = ExtResource("5_rqs4m")
 dialogue_start = "this_is_a_node_title"
 prompt_message = "Rabbit"
 
-[node name="blockbench_export" parent="." instance=ExtResource("6_yb6dn")]
+[node name="House" parent="." instance=ExtResource("6_yb6dn")]
 transform = Transform3D(-0.392174, 0, 1.11406, 0, 1.58487, 0, -1.53789, 0, -0.284095, 5.05927, 0.104826, -7.57291)
 
 [node name="NPC" parent="." instance=ExtResource("3_unwju")]
