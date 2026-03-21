@@ -4,7 +4,8 @@ extends CharacterBody3D
 @onready var animation_tree = $AnimationTree
 
 #speed is meters per second
-@export var speed = 4
+@export var speed = 5
+@export var camera: Camera3D
 var target_velocity = Vector3.ZERO
 
 #the physics process function is specifically used 
@@ -32,6 +33,7 @@ func _physics_process(delta):
 	#normalize the vector so if the player is pressing two keys at once (going diagonal) it'll be the same speed
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
+		direction = direction.rotated(Vector3.UP, camera.global_rotation.y)
 	
 	print("after normalization:", direction.length())
 	

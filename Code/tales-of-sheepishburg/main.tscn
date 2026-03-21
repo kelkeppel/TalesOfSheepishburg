@@ -1,11 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6relfn24xmg2"]
+[gd_scene load_steps=9 format=3 uid="uid://c6relfn24xmg2"]
 
 [ext_resource type="PackedScene" uid="uid://73owhcpm6hqp" path="res://player.tscn" id="1_aypqv"]
-[ext_resource type="Script" path="res://CameraPositionTarget.gd" id="2_deppq"]
 [ext_resource type="PackedScene" uid="uid://c2rjy6ujr85u7" path="res://NPC.tscn" id="3_unwju"]
 [ext_resource type="MeshLibrary" uid="uid://bpbsxsljel1sy" path="res://mesh_library.tres" id="3_ylbgi"]
-[ext_resource type="Resource" uid="uid://co15tmbautorj" path="res://Dialogue/test.dialogue" id="5_rqs4m"]
-[ext_resource type="PackedScene" uid="uid://b50sv3vyqflik" path="res://Models/House.gltf" id="6_yb6dn"]
 [ext_resource type="Resource" uid="uid://b7pk3dvdxm6eh" path="res://Dialogue/Mrs_Rabbitson.dialogue" id="7_lt4qi"]
 [ext_resource type="PackedScene" uid="uid://criasrjq6vtbq" path="res://Models/rabbitBaseModel.glb" id="8_ckj14"]
 [ext_resource type="MeshLibrary" uid="uid://bx01e6c8nu68a" path="res://buildingMeshes.meshlib" id="9_gbcl0"]
@@ -18,6 +15,14 @@ background_color = Color(0.317347, 0.750208, 0.940112, 1)
 size = Vector3(500, 1, 500)
 
 [node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vpyk8")
+
+[node name="GroundCollision" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundCollision"]
+shape = SubResource("BoxShape3D_mc27v")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.479166, 0.877724, 0, -0.877724, -0.479166, 0, 15.2339, -9.96861)
@@ -34,24 +39,6 @@ light_angular_distance = 15.43
 shadow_enabled = true
 shadow_opacity = 0.1
 
-[node name="Player" parent="." instance=ExtResource("1_aypqv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.910901, 0.519511, 0.585658)
-
-[node name="CameraPosition" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.516788, 4.50045, 1.35507)
-script = ExtResource("2_deppq")
-
-[node name="CameraPivot" type="Marker3D" parent="Player/CameraPosition"]
-transform = Transform3D(1, 0, 0, 0, 0.943784, 0.330564, 0, -0.330564, 0.943784, -0.516788, 1.46784, 4.47835)
-
-[node name="Camera3D" type="Camera3D" parent="Player/CameraPosition/CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.994533, 0.104424, 0, -0.104424, 0.994533, 0, 0.596287, 0.208852)
-projection = 2
-near = 0.727
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_vpyk8")
-
 [node name="Ground_GridMap" type="GridMap" parent="."]
 transform = Transform3D(0.999782, 0, 0, 0, 0.999782, 0, 0, 0, 0.999782, 0.0473022, -1.00013, 0.277151)
 mesh_library = ExtResource("3_ylbgi")
@@ -61,14 +48,17 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="Mrs_ Rabbitson" parent="." instance=ExtResource("3_unwju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.88896, 0.131524, -6.65064)
-dialogue_resource = ExtResource("5_rqs4m")
-dialogue_start = "this_is_a_node_title"
-prompt_message = "Rabbit"
+[node name="Building_GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.795, 0)
+mesh_library = ExtResource("9_gbcl0")
+cell_center_y = false
+cell_scale = 3.215
+data = {
+"cells": PackedInt32Array(65533, 65529, 1441792, 7, 65529, 1441793, 12, 65529, 1441793, 18, 65535, 655361, 18, 6, 655361, 65534, 8, 1, 65534, 14, 1, 16, 15, 655360)
+}
 
-[node name="House" parent="." instance=ExtResource("6_yb6dn")]
-transform = Transform3D(-0.392174, 0, 1.11406, 0, 1.58487, 0, -1.53789, 0, -0.284095, 5.05927, 0.104826, -7.57291)
+[node name="Player" parent="." instance=ExtResource("1_aypqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.7813, 0.519511, 32.436)
 
 [node name="NPC" parent="." instance=ExtResource("3_unwju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65865, 0.158712, -4.19565)
@@ -77,17 +67,3 @@ dialogue_start = "Meet_The_Rabbitsons"
 
 [node name="rabbitBaseModel2" parent="NPC" instance=ExtResource("8_ckj14")]
 transform = Transform3D(-0.8, 0, 6.99382e-08, 0, 0.64, 0, -6.99382e-08, 0, -0.8, 0, 2.79824, 0)
-
-[node name="Building_GridMap" type="GridMap" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.795, 0)
-mesh_library = ExtResource("9_gbcl0")
-cell_center_y = false
-cell_scale = 3.215
-data = {
-"cells": PackedInt32Array(65533, 65529, 1441792, 65529, 65531, 1441793)
-}
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_mc27v")
