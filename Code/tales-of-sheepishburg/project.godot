@@ -8,20 +8,24 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Tales of Sheepishburg"
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+DialogueManager="*uid://c3rodes2l3gxb"
 
 [dialogue_manager]
 
-general/balloon_path="res://Dialogue/balloon.tscn"
+runtime/balloon_path="res://Dialogue/balloon.tscn"
 
 [editor_plugins]
 
@@ -83,10 +87,6 @@ interact={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(123, 10),"global_position":Vector2(132, 56),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
-
-[internationalization]
-
-locale/translations_pot_files=PackedStringArray("res://Dialogue/test.dialogue", "res://Dialogue/Mrs_Rabbitson.dialogue")
 
 [rendering]
 

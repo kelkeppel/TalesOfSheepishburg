@@ -3,7 +3,7 @@
 extends CollisionObject3D
 class_name Interactable
 
-#defines a signal which can be sent out whenever something is interacted with, and pass the node that did it
+#defines a signal which can be sent out whenever something is interacted with, and pass the character body that did it
 signal interacted(body)
 
 @export var prompt_message = "Interact"
