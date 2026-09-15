@@ -59,12 +59,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.7813, 0.519511, 32.436)
 transform = Transform3D(0.620231, 0, 0.784419, 0, 1, 0, -0.784419, 0, 0.620231, 1.65865, 0.158712, -4.19565)
 dialogue_resource = SubResource("Resource_7mycd")
 dialogue_start = "Meet_The_Rabbitsons"
+prompt_message = null
+dialogue_file = null
 
 [node name="rabbitBaseModel2" parent="NPC" unique_id=1876233452 instance=ExtResource("8_ckj14")]
 transform = Transform3D(-0.815565, 0, 5.96046e-08, 0, 0.70334, 0, -5.96046e-08, 0, -0.819686, 0, 2.69823, 0)
 
-[node name="rabbitBaseModel3" parent="NPC" unique_id=1029726823 instance=ExtResource("8_ckj14")]
-transform = Transform3D(-0.740883, 0, -0.390884, 0, 0.670843, 0, 0.463297, 0, -0.625084, -0.617238, 2.58087, -1.8282)
+[node name="NPC2" parent="." unique_id=559451311 instance=ExtResource("3_unwju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.819386)
+dialogue_start = null
+prompt_message = null
+dialogue_file = null
+
+[node name="rabbitBaseModel3" parent="NPC2" unique_id=1029726823 instance=ExtResource("8_ckj14")]
+transform = Transform3D(-0.096099615, 0, -0.73276615, 0, 0.670843, 0, 0.8685138, 0, -0.0810796, -0.15825486, 2.7395818, -0.025997162)
 
 [node name="GridMap" type="GridMap" parent="." unique_id=1442800829]
 mesh_library = ExtResource("7_1mgrc")
