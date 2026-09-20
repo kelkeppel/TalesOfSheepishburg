@@ -9,7 +9,7 @@ signal interacted(body)
 @export var prompt_message = "Interact"
 
 #Load in the dialogue file
-var dialogue_file = "res://Dialogue/sample.txt"
+@export var dialogue_file = "res://Dialogue/sample.txt"
 
 #this is the function that runs when the object is interacted with
 func interact(body):

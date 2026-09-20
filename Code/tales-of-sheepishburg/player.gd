@@ -13,7 +13,6 @@ var target_velocity = Vector3.ZERO
 func _physics_process(delta):
 	#local variable to hold the input
 	var direction = Vector3.ZERO
-	print("starting vector:", direction.length())
 	
 	#check for input
 	if Input.is_action_pressed("move_right"):
@@ -27,28 +26,20 @@ func _physics_process(delta):
 	else:
 		#Instead of having it go straight to 0, it should be a decrement
 		direction = Vector3.ZERO
-		
-	print("after input:", direction.length())
-	
+			
 	#normalize the vector so if the player is pressing two keys at once (going diagonal) it'll be the same speed
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 		direction = direction.rotated(Vector3.UP, camera.global_rotation.y)
-	
-	print("after normalization:", direction.length())
-	
+		
 	#set the rotation of the pivot node to the direction the character was last facing that wasn't 0
 	if direction.z != 0 or direction.x != 0:
 		$Pivot.basis = Basis.looking_at(direction)
-		
-	print("after rotation:", direction.length())
-	
+			
 	#calculate the speed the character goes
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
-	
-	print("after speed calc:", target_velocity.length())
-	
+		
 	# Vertical Velocity
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
 		target_velocity.y = target_velocity.y - (5 * delta)
@@ -56,6 +47,5 @@ func _physics_process(delta):
 	
 	velocity = target_velocity
 	animation_tree.set("parameters/BlendSpace1D/blend_position", floor(target_velocity.length()))
-	print("velocity: ", velocity.length())
 	#this is a built in function that helps smooth out movement
 	move_and_slide()

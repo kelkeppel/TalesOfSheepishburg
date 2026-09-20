@@ -22,10 +22,15 @@ config/icon="res://icon.svg"
 [autoload]
 
 DialogueManager="*uid://c3rodes2l3gxb"
+GlobalVars="*uid://dwol6f6d8plkd"
 
 [dialogue_manager]
 
 runtime/balloon_path="res://Dialogue/balloon.tscn"
+
+[editor]
+
+version_control/autoload_on_startup=true
 
 [editor_plugins]
 
