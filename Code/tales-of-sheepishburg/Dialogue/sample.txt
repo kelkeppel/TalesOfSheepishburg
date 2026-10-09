@@ -1,2 +1,6 @@
 |1| `
 This is some sample speech. `
+|2| `
+Character: "The character continues talking" `
+Player: "Responds" `
+Character: "Responds back" `

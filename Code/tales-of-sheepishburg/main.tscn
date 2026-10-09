@@ -58,6 +58,10 @@ transform = Transform3D(0.620231, 0, 0.784419, 0, 1, 0, -0.784419, 0, 0.620231, 
 [node name="rabbitBaseModel2" parent="NPC" unique_id=1876233452 instance=ExtResource("8_ckj14")]
 transform = Transform3D(-0.815565, 0, 5.96046e-08, 0, 0.70334, 0, -5.96046e-08, 0, -0.819686, 0, 2.69823, 0)
 
+[node name="RichTextLabel" type="RichTextLabel" parent="NPC" unique_id=1109069891]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="NPC2" parent="." unique_id=559451311 instance=ExtResource("3_unwju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.819386)
 dialogue_file = "Something else"
