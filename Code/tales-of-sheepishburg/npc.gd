@@ -1,12 +1,30 @@
-extends Interactable
-var scene_number = 2
+extends CollisionObject3D
+class_name NPC
 
-func _on_ready():
-	load_from_file()
+@export var pathToNode = get_path()
 
-func _on_interacted(body):
+var scene_number = 1
+
+@export var prompt_message = "Interact"
+
+#Load in the dialogue file
+@export var dialogue_file = "res://Dialogue/sample.txt"
+
+#this is the function that runs when the NPC is interacted with
+func on_interact():
+	print(" interacted with ", name)
+	
 	$AudioStreamPlayer3D.play()
 	load_from_file()
+	
+#the problem with this is that its checking for a signal once at the start before the signal is emitted
+
+func _on_ready():
+	$InteractRay.interacted.connect(on_interact)
+	while true:
+		if $InteractRay.interacted.is_connected(on_interact):
+			print("interact signal is connected")
+	
 	
 func load_from_file():
 	#open the dialogue file and save its whole text into a var
@@ -19,16 +37,11 @@ func load_from_file():
 	
 	#the split function removes the |num| marker from the text
 	#if the scene marker is the first thing in the string, then index 0 will be blank
-	
-	#we can disregard any text from the file that falls before or after the current scene marker
-	#when the scene marker updates, the function should be loaded again 
-	#basically like a giant loop except if you do it in an actual loop it would need to be handled
-	#in some other background script that calls the load_from_file func from each interactable each time the scene marker is updated
-	#and also has a case for when an interactable doesn't have dialogue or doesn't have one for that scene marker
-	
 	var current_scene_dialogue = scene_dialogue[1].split("`")
 	
-	print("Line [0]: ", current_scene_dialogue[0])
-	print("Line [1]: ", current_scene_dialogue[1])
+	#while there is more dialogue available, print it
+	for i in current_scene_dialogue:
+		print(current_scene_dialogue[int(i)])
+	
 	return content
 	

@@ -9,6 +9,7 @@ radius = 0.446
 
 [node name="NPC" type="CharacterBody3D" unique_id=250928475]
 script = ExtResource("1_7cv4r")
+pathToNode = NodePath(".")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1732183499]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.000122062, 1.24717, -0.00263029)
@@ -16,5 +17,3 @@ shape = SubResource("CylinderShape3D_tbjyj")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=507087498]
 stream = ExtResource("3_3cwy4")
-
-[connection signal="interacted" from="." to="." method="_on_interacted"]
