@@ -1,10 +1,11 @@
 extends CollisionObject3D
 class_name NPC
 
-@export var pathToNode = get_path()
+#Depending on when in the story you are, interacting with an NPC should
+#give you a different conversation. This variable keeps track of the scene.
+var scene_number = 2
 
-var scene_number = 1
-
+#The default prompt message when you go up to an NPC
 @export var prompt_message = "Interact"
 
 #Load in the dialogue file
@@ -17,17 +18,19 @@ func on_interact():
 	$AudioStreamPlayer3D.play()
 	load_from_file()
 	
-#the problem with this is that its checking for a signal once at the start before the signal is emitted
-
+#_on_ready runs once when the node is instantiated at the start of the game.
 func _on_ready():
-	$InteractRay.interacted.connect(on_interact)
-	while true:
+		$InteractRay.interacted.connect(on_interact)
+		#just a debug print to verify it connects, can remove later
 		if $InteractRay.interacted.is_connected(on_interact):
 			print("interact signal is connected")
 	
 	
+	#load from file function splits the dialogue into the current scene, 
+	#and then splits the scene's dialogue into individual lines
+	
 func load_from_file():
-	#open the dialogue file and save its whole text into a var
+	#open the dialogue file and save its whole text into a variable
 	var file = FileAccess.open(dialogue_file, FileAccess.READ)
 	var content = file.get_as_text()
 	
@@ -40,7 +43,8 @@ func load_from_file():
 	var current_scene_dialogue = scene_dialogue[1].split("`")
 	
 	#while there is more dialogue available, print it
-	for i in current_scene_dialogue:
+	#start it at 1 instead of 0 because 0 is always a blank space
+	for i in range(1, current_scene_dialogue.size()):
 		print(current_scene_dialogue[int(i)])
 	
 	return content

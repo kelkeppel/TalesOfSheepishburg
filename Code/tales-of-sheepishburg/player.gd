@@ -4,7 +4,7 @@ extends CharacterBody3D
 @onready var animation_tree = $AnimationTree
 
 #speed is meters per second
-@export var speed = 5
+@export var speed = 15
 @export var camera: Camera3D
 var target_velocity = Vector3.ZERO
 

@@ -1,9 +1,9 @@
-[gd_scene load_steps=29 format=4 uid="uid://73owhcpm6hqp"]
+[gd_scene format=4 uid="uid://73owhcpm6hqp"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_7xstc"]
+[ext_resource type="Script" uid="uid://x07jng4u45aj" path="res://player.gd" id="1_7xstc"]
 [ext_resource type="Animation" uid="uid://cmmiuhyiutw8x" path="res://Animations/Sheep_Walk.res" id="3_ivtg6"]
 [ext_resource type="PackedScene" uid="uid://bmf8llqu4y71l" path="res://InteractRay.tscn" id="3_kuxwd"]
-[ext_resource type="Script" path="res://camera_spring_arm.gd" id="4_6siil"]
+[ext_resource type="Script" uid="uid://tkcl7cmdl326" path="res://camera_spring_arm.gd" id="4_6siil"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hf678"]
 resource_name = "Material.003"
@@ -387,8 +387,8 @@ tracks/8/keys = PackedFloat32Array(0, 1, -0.679257, 7.7851e-08, -1.014e-07, 0.73
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gndv3"]
 _data = {
-"Idle": SubResource("Animation_kyorp"),
-"WalkCycle": ExtResource("3_ivtg6")
+&"Idle": SubResource("Animation_kyorp"),
+&"WalkCycle": ExtResource("3_ivtg6")
 }
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tbjyj"]
@@ -402,12 +402,14 @@ animation = &"Idle"
 animation = &"WalkCycle"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_dehho"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_o23tn")
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_gnpp0")
-blend_point_1/pos = 0.4
 min_space = -0.05
 max_space = 1.15
+blend_point_0/node = SubResource("AnimationNodeAnimation_o23tn")
+blend_point_0/pos = 0.0
+blend_point_0/name = &"0"
+blend_point_1/node = SubResource("AnimationNodeAnimation_gnpp0")
+blend_point_1/pos = 0.4
+blend_point_1/name = &"1"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_kcc5i"]
 graph_offset = Vector2(-212.673, -42.8521)
@@ -415,28 +417,28 @@ nodes/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_dehho")
 nodes/BlendSpace1D/position = Vector2(60, 120)
 node_connections = [&"output", 0, &"BlendSpace1D"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+[node name="Player" type="CharacterBody3D" unique_id=1042437625 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_7xstc")
 camera = NodePath("SpringArm3D/Camera3D")
 
-[node name="Pivot" type="Node3D" parent="."]
+[node name="Pivot" type="Node3D" parent="." unique_id=1991965282]
 
-[node name="RayCast3D" parent="Pivot" instance=ExtResource("3_kuxwd")]
+[node name="RayCast3D" parent="Pivot" unique_id=701797461 instance=ExtResource("3_kuxwd")]
 transform = Transform3D(-1.00302, -1.28168e-10, 0.00175286, -1.28556e-10, 1, 1.03592e-13, -0.00273097, -1.87742e-13, -0.643782, 0, 1.90787, -0.296362)
 
-[node name="newSheepModel modifiers applied animated" type="Node3D" parent="Pivot"]
+[node name="newSheepModel modifiers applied animated" type="Node3D" parent="Pivot" unique_id=2030725468]
 transform = Transform3D(-0.0871558, 0, 0.996195, 0, 1, 0, -0.996195, 0, -0.0871558, 0, 3.92021, 0)
 
-[node name="Armature" type="Node3D" parent="Pivot/newSheepModel modifiers applied animated"]
+[node name="Armature" type="Node3D" parent="Pivot/newSheepModel modifiers applied animated" unique_id=723589130]
 transform = Transform3D(0, 0, 1, 0, 0.792736, 0, -1, 0, 0, 0, -2.57622, 0)
 
-[node name="Front Ref" type="Node3D" parent="Pivot/newSheepModel modifiers applied animated/Armature"]
+[node name="Front Ref" type="Node3D" parent="Pivot/newSheepModel modifiers applied animated/Armature" unique_id=727827874]
 transform = Transform3D(1.2, 0, 0, 0, 0, -1.51375, 0, 1.2, 0, 0.0494503, 1.18653, 0)
 
-[node name="Side Ref" type="Node3D" parent="Pivot/newSheepModel modifiers applied animated/Armature"]
+[node name="Side Ref" type="Node3D" parent="Pivot/newSheepModel modifiers applied animated/Armature" unique_id=836612734]
 transform = Transform3D(-1.43051e-07, 1.2, -3.60905e-07, -7.15256e-08, -2.86102e-07, -1.51375, -1.2, -1.43051e-07, 9.02263e-08, 0, 1.23024, 0.0277257)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="Pivot/newSheepModel modifiers applied animated/Armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="Pivot/newSheepModel modifiers applied animated/Armature" unique_id=1389253703]
 bones/0/name = "Bone"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -456,7 +458,7 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(0.997159, -0.00313618, -0.0752621, -0.00159133, 0.998033, -0.0626719, 0.0753106, 0.0626136, 0.995192, 0, 0.741498, 0)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 0.741498, 0)
-bones/2/rotation = Quaternion(0.042401, -0.0376905, -3.06047e-05, 0.99839)
+bones/2/rotation = Quaternion(0.042098746, -0.03769049, -1.9073432e-05, 0.99840236)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Bone.003.R"
 bones/3/parent = 2
@@ -477,7 +479,7 @@ bones/5/parent = 4
 bones/5/rest = Transform3D(0.916532, -0.349976, -0.193614, 0.35961, 0.932967, 0.0158935, 0.175073, -0.0841922, 0.980949, 3.95812e-08, 0.483531, -1.86265e-09)
 bones/5/enabled = true
 bones/5/position = Vector3(3.95812e-08, 0.483531, -1.86265e-09)
-bones/5/rotation = Quaternion(0.0529036, -0.101369, 0.188434, 0.975407)
+bones/5/rotation = Quaternion(0.060824767, -0.09402021, 0.18903328, 0.97556496)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Bone.007.R"
 bones/6/parent = 5
@@ -519,7 +521,7 @@ bones/11/parent = 10
 bones/11/rest = Transform3D(0.916532, 0.349976, 0.193614, -0.35961, 0.932967, 0.0158935, -0.175073, -0.0841923, 0.980949, -1.69966e-07, 0.483531, 9.31323e-09)
 bones/11/enabled = true
 bones/11/position = Vector3(-1.69966e-07, 0.483531, 9.31323e-09)
-bones/11/rotation = Quaternion(-0.201351, 0.123582, -0.161354, 0.958201)
+bones/11/rotation = Quaternion(-0.18263459, 0.120913744, -0.16376671, 0.96187574)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "Bone.007.L"
 bones/12/parent = 11
@@ -547,28 +549,28 @@ bones/15/parent = 2
 bones/15/rest = Transform3D(0.999999, -0.00159133, -4.99559e-05, 0.00159133, 0.998033, 0.0626719, -4.98739e-05, -0.0626719, 0.998034, 3.49246e-10, 0.369526, -6.48288e-09)
 bones/15/enabled = true
 bones/15/position = Vector3(3.49246e-10, 0.369526, -6.48288e-09)
-bones/15/rotation = Quaternion(-0.0313514, -2.61039e-08, 0.000796057, 0.999508)
+bones/15/rotation = Quaternion(-0.03135137, -2.6103864e-08, 0.0007960567, 0.9995082)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "Bone.003.L.001"
 bones/16/parent = -1
 bones/16/rest = Transform3D(-1.19209e-07, 0.998695, 0.0510733, 0, -0.0510733, 0.998695, 1, 1.19209e-07, 0, 0, 0, 0)
 bones/16/enabled = true
 bones/16/position = Vector3(0, 0, 0)
-bones/16/rotation = Quaternion(0.512609, 0.487064, 0.512609, -0.487064)
+bones/16/rotation = Quaternion(0.5126093, 0.4870644, 0.51260936, -0.48706433)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "Bone.004.L"
 bones/17/parent = 16
 bones/17/rest = Transform3D(1, -4.30728e-08, -2.52023e-07, 2.54596e-07, 0.0772189, 0.997014, -2.34833e-08, -0.997014, 0.0772189, -9.9365e-15, 0.363544, -8.00937e-08)
 bones/17/enabled = true
 bones/17/position = Vector3(-9.9365e-15, 0.363544, -8.00937e-08)
-bones/17/rotation = Quaternion(-0.672487, -0.131327, -0.23184, 0.690481)
+bones/17/rotation = Quaternion(-0.6839819, -0.10179438, -0.20090917, 0.6938604)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "Bone.005.L.001"
 bones/18/parent = 17
 bones/18/rest = Transform3D(1, -7.77527e-09, 6.8544e-09, 7.56305e-09, 0.999537, 0.0304347, -7.08786e-09, -0.0304347, 0.999537, 0, 0.749142, 0)
 bones/18/enabled = true
 bones/18/position = Vector3(0, 0.749142, 0)
-bones/18/rotation = Quaternion(0.019847, -0.0426345, -0.0464517, 0.997813)
+bones/18/rotation = Quaternion(0.019847015, -0.04263452, -0.0464517, 0.997813)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "Bone.006.L.001"
 bones/19/parent = 18
@@ -589,7 +591,7 @@ bones/21/parent = 20
 bones/21/rest = Transform3D(0, 1, 1.94695e-07, -1, 0, 2.90573e-07, 2.90573e-07, -1.94695e-07, 1, 2.13163e-14, 0.0974563, 1.49012e-08)
 bones/21/enabled = true
 bones/21/position = Vector3(2.13163e-14, 0.0974563, 1.49012e-08)
-bones/21/rotation = Quaternion(-0.0026508, -0.010228, -0.777078, 0.629316)
+bones/21/rotation = Quaternion(-0.0026508034, -0.010228029, -0.7770778, 0.62931603)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "Bone.003.R.001"
 bones/22/parent = -1
@@ -603,7 +605,7 @@ bones/23/parent = 22
 bones/23/rest = Transform3D(1, 4.30728e-08, 2.52023e-07, -2.54596e-07, 0.0772189, 0.997014, 2.34833e-08, -0.997014, 0.0772189, 7.10543e-15, 0.363544, -8.00937e-08)
 bones/23/enabled = true
 bones/23/position = Vector3(7.10543e-15, 0.363544, -8.00937e-08)
-bones/23/rotation = Quaternion(-0.659849, -0.131364, -0.231905, 0.70254)
+bones/23/rotation = Quaternion(-0.66904354, -0.101836696, -0.2009936, 0.7082455)
 bones/23/scale = Vector3(1, 1, 1)
 bones/24/name = "Bone.005.R.001"
 bones/24/parent = 23
@@ -641,64 +643,62 @@ bones/28/position = Vector3(0, 0, 0)
 bones/28/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/28/scale = Vector3(1, 1, 1)
 
-[node name="Arms" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D"]
+[node name="Arms" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D" unique_id=1523503524]
 mesh = SubResource("ArrayMesh_v5yrg")
 skin = SubResource("Skin_yu4h1")
 
-[node name="BodyFluff" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D"]
+[node name="BodyFluff" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D" unique_id=1207457108]
 mesh = SubResource("ArrayMesh_xn3eh")
 skin = SubResource("Skin_yu4h1")
 
-[node name="Cube" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D"]
+[node name="Cube" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D" unique_id=203912454]
 mesh = SubResource("ArrayMesh_xm2pm")
 skin = SubResource("Skin_yu4h1")
 
-[node name="ears" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D"]
+[node name="ears" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D" unique_id=1513840573]
 mesh = SubResource("ArrayMesh_ye7se")
 skin = SubResource("Skin_yu4h1")
 
-[node name="Eyes" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D"]
+[node name="Eyes" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D" unique_id=404829064]
 mesh = SubResource("ArrayMesh_7g0n2")
 skin = SubResource("Skin_yu4h1")
 
-[node name="Head" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D"]
+[node name="Head" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D" unique_id=1830407282]
 mesh = SubResource("ArrayMesh_2xed3")
 skin = SubResource("Skin_yu4h1")
 
-[node name="HeadFluff" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D"]
+[node name="HeadFluff" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D" unique_id=2143939710]
 mesh = SubResource("ArrayMesh_mmujo")
 skin = SubResource("Skin_yu4h1")
 
-[node name="LEgs" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D"]
+[node name="LEgs" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D" unique_id=1839792966]
 mesh = SubResource("ArrayMesh_pc4fq")
 skin = SubResource("Skin_yu4h1")
 
-[node name="Mouth" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D"]
+[node name="Mouth" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D" unique_id=643970571]
 mesh = SubResource("ArrayMesh_twlwh")
 skin = SubResource("Skin_yu4h1")
 
-[node name="Nose" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D"]
+[node name="Nose" type="MeshInstance3D" parent="Pivot/newSheepModel modifiers applied animated/Armature/Skeleton3D" unique_id=1068843769]
 mesh = SubResource("ArrayMesh_uk0nx")
 skin = SubResource("Skin_yu4h1")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/newSheepModel modifiers applied animated"]
-libraries = {
-"": SubResource("AnimationLibrary_gndv3")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/newSheepModel modifiers applied animated" unique_id=1668206056]
+libraries/ = SubResource("AnimationLibrary_gndv3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=241822592]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.000122062, 1.69847, -0.012895)
 shape = SubResource("CylinderShape3D_tbjyj")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=635997357]
 root_node = NodePath("../Pivot/newSheepModel modifiers applied animated")
 tree_root = SubResource("AnimationNodeBlendTree_kcc5i")
 anim_player = NodePath("../Pivot/newSheepModel modifiers applied animated/AnimationPlayer")
 parameters/BlendSpace1D/blend_position = 0.879634
 
-[node name="SpringArm3D" type="SpringArm3D" parent="."]
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1628894870]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 4.01097, 0)
 spring_length = 6.0
 script = ExtResource("4_6siil")
 
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=123128932]
