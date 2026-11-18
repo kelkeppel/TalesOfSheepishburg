@@ -14,6 +14,40 @@ background_color = Color(0.317347, 0.750208, 0.940112, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_mc27v"]
 size = Vector3(500, 1, 500)
 
+[sub_resource type="Theme" id="Theme_7mycd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.76828015, 0.70223784, 0.6626149, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.41725218, 0.28439376, 0.16462022, 1)
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 10
+
+[sub_resource type="GDScript" id="GDScript_7j5co"]
+script/source = "extends RichTextLabel
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	set_text(\"thing\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
 [node name="Main" type="Node3D" unique_id=410546263]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1373854081]
@@ -52,11 +86,28 @@ data = {
 [node name="Player" parent="." unique_id=2030075254 instance=ExtResource("1_aypqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.7813, 0.519511, 32.436)
 
+[node name="Dialogue" type="RichTextLabel" parent="Player" unique_id=352265827]
+anchors_preset = -1
+anchor_left = 0.31800002
+anchor_right = 0.68200004
+offset_left = -113.33603
+offset_top = 40.0
+offset_right = 113.33594
+offset_bottom = 254.0
+grow_horizontal = 2
+theme = SubResource("Theme_7mycd")
+theme_override_colors/default_color = Color(0.19672236, 0.12318688, 0.03163473, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_272bh")
+script = SubResource("GDScript_7j5co")
+
 [node name="NPC" parent="." unique_id=758327467 instance=ExtResource("3_unwju")]
 transform = Transform3D(0.620231, 0, 0.784419, 0, 1, 0, -0.784419, 0, 0.620231, 1.65865, 0.158712, -4.19565)
 
 [node name="rabbitBaseModel2" parent="NPC" unique_id=1876233452 instance=ExtResource("8_ckj14")]
-transform = Transform3D(-0.815565, 0, 5.96046e-08, 0, 0.70334, 0, -5.96046e-08, 0, -0.819686, 0, 2.69823, 0)
+transform = Transform3D(-0.815565, 0, 5.9604645e-08, 0, 0.70334, 0, -8.940697e-08, 0, -0.81968606, 0, 2.69823, 0)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="NPC" unique_id=1109069891]
 offset_right = 40.0
@@ -64,6 +115,7 @@ offset_bottom = 40.0
 
 [node name="NPC2" parent="." unique_id=559451311 instance=ExtResource("3_unwju")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.819386)
+prompt_message = null
 dialogue_file = "Something else"
 
 [node name="rabbitBaseModel3" parent="NPC2" unique_id=1029726823 instance=ExtResource("8_ckj14")]

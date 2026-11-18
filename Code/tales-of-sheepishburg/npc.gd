@@ -11,6 +11,7 @@ var scene_number = 2
 #Load in the dialogue file
 @export var dialogue_file = "res://Dialogue/sample.txt"
 
+
 #this is the function that runs when the NPC is interacted with
 func on_interact():
 	print(" interacted with ", name)
